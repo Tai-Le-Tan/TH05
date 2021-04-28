@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TH05.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Categories", FormMethod.Get))
+{
+    <input type="text" name="_name" />
+    <input type="submit" value="Search" />
+}
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.IDCate)</th>
+        <th>@Html.DisplayNameFor(model => model.NameCate)</th>
+        <th></th>
+    </tr>
+    @foreach (var iteam in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelIteam => iteam.IDCate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelIteam => iteam.NameCate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = iteam.IDCate })
+                @Html.ActionLink("Details", "Details", new { id = iteam.IDCate })
+                @Html.ActionLink("Delete", "Delete", new { id = iteam.IDCate })
+
+            </td>
+        </tr>
+    }
+</table>
+
