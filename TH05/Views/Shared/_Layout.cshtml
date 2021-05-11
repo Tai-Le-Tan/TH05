@@ -8,6 +8,68 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <nav class="navbar navbar-inverse">
+
+        <img src="https://vutaweb.com/contents/v2/images/slide_background.jpg" style="height:300px; width:100%" />
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Nhất Nghệ</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="#">FAQs</a></li>
+
+                @*dropdown*@
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        My Account
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                        <li><a href="#">Forgot Password</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li> <hr /> </li>
+                        <li><a href="#">Log Off</a></li>
+                        <li><a href="#">Change Password</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                        <li> <hr /> </li>
+                        <li><a href="#">My Orders</a></li>
+                        <li><a href="#">My Favorite Item</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li>
+                    <a href="~/Views/LoginUser/Index">
+                        <span class="glyphicon glyphicon-user"></span> Sign Up
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-log-in"></span> Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="col-sm-9">
+        @RenderBody()
+        <hr />
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+@*<body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -38,5 +100,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-</body>
+</body>*@
 </html>
