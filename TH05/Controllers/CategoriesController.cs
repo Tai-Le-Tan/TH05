@@ -73,5 +73,10 @@ namespace TH05.Controllers
                 return Content("Lỗi");
             }
         }
+       public PartialViewResult CategoryParial()
+        {
+            var cateList = database.Categories.ToList();
+            return PartialView(cateList);
+        }
     }
 }

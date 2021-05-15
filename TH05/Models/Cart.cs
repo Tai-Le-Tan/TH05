@@ -44,7 +44,7 @@ namespace TH05.Models
             return (decimal)total;
         }
         //Viết hàm cập nhật lại số lượng sản phẩm ở mỗi dòng sản phẩm khi khách hàng muốn đặt mua thêm
-        public void Update_quantity(int id, int _new_quan)
+        public void update_quantity(int id, int _new_quan)
         {
             var item = items.Find(s => s._product.ProductID == id);
             if (item != null)

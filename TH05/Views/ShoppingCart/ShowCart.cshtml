@@ -8,7 +8,7 @@
 }
 
 <h2>ShowCart</h2>
-<a href="@Url.Action("Index","Product")>Tiếp tục mua hàng</a>
+<a href="@Url.Action("Index","Product")">Tiếp tục mua hàng</a>
 @if(Model!=null)
             {
 <table class="table">
@@ -61,6 +61,38 @@
                 Tổng tiền: @Model.Total_money()
             </td>
         </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="4"></td>
+            @using(Html.BeginForm("CheckOut","ShoppingCart"))
+                {
+                    <table style="border-collapse:separate;border-spacing:5px;">
+                        <tr>
+                            <td>Code Customer</td>
+                            <td><input  type="number" name="CodeCustomer" required/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                AddressDelivery:
+                            </td>
+                            <td>
+                                <input type="text" name="AddressDelivery" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <input type="submit" value="CheckOut" class="btn btn-success" />
+                                <a href="@Url.Action("Create","Customer")" class="btn btn-success" >Register</a>
+                            </td>
+                        </tr>
+
+                    </table>
+                }
+
+        </tr>
+       
     </tfoot>
 </table>
             }
