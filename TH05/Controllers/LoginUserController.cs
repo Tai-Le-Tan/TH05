@@ -32,6 +32,7 @@ namespace TH05.Controllers
                 Session["ID"] = _user.ID;
                 Session["PasswordUser"] = _user.PasswordUser;
                 return RedirectToAction("Index", "Product");
+              
             }
         }
         public ActionResult RegisterUser()
@@ -55,9 +56,15 @@ namespace TH05.Controllers
                 {
                     ViewBag.ErrorRegister = "This ID is exit";
                     return View();
+                  
                 }
             }
             return View();
+        }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
     

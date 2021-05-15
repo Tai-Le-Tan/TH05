@@ -12,56 +12,58 @@
 
         <img src="https://vutaweb.com/contents/v2/images/slide_background.jpg" style="height:300px; width:100%" />
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Nhất Nghệ</a>
-            </div>
 
             <ul class="nav navbar-nav">
-                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Feedback</a></li>
-                <li><a href="#">FAQs</a></li>
-
-                @*dropdown*@
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        My Account
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
-                        <li><a href="#">Forgot Password</a></li>
-                        <li><a href="#">Register</a></li>
-                        <li> <hr /> </li>
-                        <li><a href="#">Log Off</a></li>
-                        <li><a href="#">Change Password</a></li>
-                        <li><a href="#">Edit Profile</a></li>
-                        <li> <hr /> </li>
-                        <li><a href="#">My Orders</a></li>
-                        <li><a href="#">My Favorite Item</a></li>
-                    </ul>
-                </li>
+                <li class="active">@Html.ActionLink("Product", "Index", "Product")</li>
+                <li class="active">@Html.ActionLink("Categories", "Index", "Categories")</li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <img src="@Url.Content("~/Content/images/shopping-cart.png") " style="height:30px;margin:10px; " />
+                    @Html.Action("BagCarts", "ShoppingCart")
+                </li>
+                <li></li>
+                @if (Session["ID"] != null)
+                {
+                    <li class="glyphicon glyphicon-user" style="color:white; margin-left:20px;margin-right:20px;margin-top:15px">@Session["ID"]</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "LoginUser")</li>
+                    <li  style="color:white; margin-left:20px;margin-right:20px;margin-top:15px"> <p>Hello @Session["ID"]</p></li>
+                }
+                else
+                {
+                    <li>
+                        @Html.ActionLink("Login", "Index", "LoginUser");
 
-                <li>
-                    <a href="~/Views/LoginUser/Index">
-                        <span class="glyphicon glyphicon-user"></span> Sign Up
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-log-in"></span> Login
-                    </a>
-                </li>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Register", "RegisterUser", "LoginUser")
+                    </li>
+                    <li  style="color:white; margin-left:20px;margin-right:20px;margin-top:15px"> <p>Hello</p></li>
+                }
+
             </ul>
         </div>
     </nav>
-    <div class="col-sm-9">
-        @RenderBody()
-        <hr />
+    <div class="container-fluid body-content">
+         <div class="row">
+             <div class="col-md-2">
+                 <ul style="text-decoration:none;background-color:aqua;margin-top:20px;list-style-type:none;padding:10px">
+                     <li>
+                         <a href="/OrderDetail/GroupByTop5" style="color:white;"id="animation_top5">Top 5 sản phẩm bán chạy nhất</a>
+                     </li>
+                 </ul>
+                 <ul style="list-style-type:none">
+                     <li>
+                         <a href="/Product/SearchOption" class="btn btn-default">Tìm theo giá</a>
+                     </li>
+                 </ul>
+                 @{ Html.RenderAction("CategoryParial", "Categories");}
+
+             </div>
+             <div class="col-md-10">
+                 @RenderBody()
+             </div>
+         </div>
 
     </div>
 
@@ -70,35 +72,35 @@
     @RenderSection("scripts", required: false)
 </body>
 @*<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>*@
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>*@
 </html>
