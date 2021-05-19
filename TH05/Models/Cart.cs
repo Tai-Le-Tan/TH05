@@ -49,7 +49,13 @@ namespace TH05.Models
             var item = items.Find(s => s._product.ProductID == id);
             if (item != null)
             {
-                item._quantity = _new_quan;
+                if (items.Find(s => s._product.Quantily > _new_quan) != null)
+                {
+                    item._quantity = _new_quan;
+                }
+                else
+
+                    item._quantity = 1;
             }
         }
         //Viết hàm xóa sản phẩm trong giỏ hàng
