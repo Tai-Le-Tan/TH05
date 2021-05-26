@@ -12,11 +12,12 @@ namespace TH05.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminUser
+    public partial class sysdiagram
     {
-        public int ID { get; set; }
-        public string NameUser { get; set; }
-        public string RoleUser { get; set; }
-        public string PasswordUser { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

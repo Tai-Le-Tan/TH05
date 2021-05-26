@@ -1,10 +1,14 @@
-﻿@model IEnumerable<TH05.Models.Product>
+﻿@*@model IEnumerable<TH05.Models.Product>*@
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using TH05.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Product>
 
-<h2>Danh sách sản phẩm</h2>
+<h2 style="text-align:center; color:green; padding-bottom:20px" >Danh sách sản phẩm</h2>
 <div class="container">
     <div class="row">
         @foreach(var pro in Model)
@@ -20,5 +24,9 @@
             </div>
             }
     </div>
+</div>
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber )/@Model.PageCount
+<div class="MenuPage">
+    @Html.PagedListPager(Model,page=>Url.Action("Index",new {page=page.ToString()}))
 </div>
 

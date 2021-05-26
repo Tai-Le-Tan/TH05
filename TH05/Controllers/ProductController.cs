@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TH05.Models;
+using PagedList;
+using PagedList.Mvc;
 namespace TH05.Controllers
 {
     public class ProductController : Controller
@@ -11,18 +13,21 @@ namespace TH05.Controllers
         DBSportStoreEntities1 db = new DBSportStoreEntities1();
 
         // GET: Product
-        public ActionResult Index(string category)
+        public ActionResult Index(string category, int? page)
 
         {
+            int pageSize = 4;
+            int pageNum = (page ?? 1);
             if (category == null)
             {
-                var productList = db.Products.OrderByDescending(x => x.NamePro);
-                return View(productList);
+                var productList = db.Products.OrderByDescending(x => x.NamePro).ToList();
+                return View(productList.ToPagedList(pageNum,pageSize));
             }
             else
             {
-                var productList = db.Products.OrderByDescending(x => x.NamePro).Where(x => x.Category.ToString() == category);
-                return View(productList);
+                var productList = db.Products.OrderByDescending(x => x.NamePro)
+                    .Where(x => x.Category.ToString()== category).ToList();
+                return View(productList.ToPagedList(pageNum, pageSize));
             }
             /* var data = db.Products.ToList();
              return View(data);*/
