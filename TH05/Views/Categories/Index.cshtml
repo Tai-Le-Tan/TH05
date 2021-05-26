@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2 style="text-align:center;color:red; padding-bottom:20px">Thể Loại</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -32,9 +32,9 @@
                 @Html.DisplayFor(modelIteam => iteam.NameCate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = iteam.IDCate })
-                @Html.ActionLink("Details", "Details", new { id = iteam.IDCate })
-                @Html.ActionLink("Delete", "Delete", new { id = iteam.IDCate })
+                <button type="submit" style="background-color:blue;">  @Html.ActionLink("Edit", "Edit", new { id = iteam.IDCate })</button>
+                <button type="submit" style="background-color:red;">@Html.ActionLink("Details", "Details", new { id = iteam.IDCate })</button>
+                <button type="submit" style="background-color:olivedrab;"> @Html.ActionLink("Delete", "Delete", new { id = iteam.IDCate })</button>
 
             </td>
         </tr>

@@ -27,9 +27,11 @@
     @{ 
         foreach(var iteam in Model)
             {
-                <li class="div-cate"></li>
-                @Html.ActionLink(iteam.NameCate,"Index","Product", new { category= iteam.IDCate.ToString()},"")
+                <li class="div-cate">
+                @Html.ActionLink(iteam.NameCate,"Index","Product", new { category= iteam.IDCate.ToString().Trim()},"")
+                </li>
             }
+        <hr />
     }
 
 </ul>
